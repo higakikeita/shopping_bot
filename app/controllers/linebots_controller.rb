@@ -44,6 +44,19 @@ class LinebotsController < ApplicationController
     # 取得したデータを使いやすいように配列に格納し直す
     items = res.map{|item| item}
     make_reply_content(items)
+    {
+      "type": 'flex',
+      "altText": 'This is a Flex Message',
+      "contents":
+      {
+        "type": 'carousel',
+        "contents": [
+          make_part(items[0]),
+          make_part(items[1]),
+          make_part(items[2])
+        ]
+      }
+    }
   end
   def make_part(item)
     title = item['itemName']
